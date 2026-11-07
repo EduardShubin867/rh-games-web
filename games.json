@@ -9,7 +9,8 @@
     "hk-in-a-row": {
       "repository": "EduardShubin867/hk-in-a-row",
       "version": "1.1.0",
-      "commit": "5dca5f25f975a92f64e16c3b1385274378645578"
+      "commit": "5dca5f25f975a92f64e16c3b1385274378645578",
+      "archive_sha256": "8eca209195702811bcc165453bf5bfa5e68f82342633b50a17e7aa3089c266a5"
     }
   }
 }
