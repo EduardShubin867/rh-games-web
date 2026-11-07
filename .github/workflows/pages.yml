@@ -11,7 +11,7 @@ concurrency:
 jobs:
   build:
     permissions:
-      contents: read
+      contents: write
       pages: read
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -49,6 +49,58 @@ jobs:
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: dist
+      - name: Publish ready-to-host deploy branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rh_latest_main=$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/heads/main" --jq .object.sha)
+          if [ "$rh_latest_main" != "$GITHUB_SHA" ]; then
+            echo 'A newer main commit will publish the deploy branch.'
+            exit 0
+          fi
+
+          export GIT_CONFIG_GLOBAL="$RUNNER_TEMP/rh-games-deploy.gitconfig"
+          gh auth setup-git --hostname github.com
+          rh_deploy_remote="https://github.com/${GITHUB_REPOSITORY}.git"
+          rh_previous_sha=$(git ls-remote --heads "$rh_deploy_remote" refs/heads/deploy | cut -f1)
+          if [ -n "$rh_previous_sha" ]; then
+            gh api "repos/${GITHUB_REPOSITORY}/contents/.rh-games-deploy.json?ref=${rh_previous_sha}" --jq .content \
+              | base64 --decode > "$RUNNER_TEMP/rh-games-previous-deploy.json"
+            rh_previous_source=$(python - "$RUNNER_TEMP/rh-games-previous-deploy.json" <<'PY'
+          import json, re, sys
+          data = json.load(open(sys.argv[1]))
+          if data.get("publisher") != "rh-games-web" or not re.fullmatch(r"[0-9a-f]{40}", data.get("source_commit", "")):
+              raise SystemExit("Refusing to overwrite a branch not owned by this publisher")
+          print(data["source_commit"])
+          PY
+            )
+            if [ "$rh_previous_source" = "$GITHUB_SHA" ]; then
+              echo 'This exact site commit is already published in deploy.'
+              exit 0
+            fi
+          fi
+
+          export RH_DEPLOY_DIR
+          RH_DEPLOY_DIR=$(mktemp -d "$RUNNER_TEMP/rh-games-deploy.XXXXXX")
+          cp -a dist/. "$RH_DEPLOY_DIR/"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ["RH_DEPLOY_DIR"])
+          catalog = json.loads((root / "versions.json").read_text())
+          metadata = {"publisher": "rh-games-web", "source_commit": os.environ["GITHUB_SHA"], "games": catalog["games"]}
+          (root / ".rh-games-deploy.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
+          PY
+          git -C "$RH_DEPLOY_DIR" init --initial-branch=deploy
+          git -C "$RH_DEPLOY_DIR" config user.name 'github-actions[bot]'
+          git -C "$RH_DEPLOY_DIR" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$RH_DEPLOY_DIR" add --all
+          git -C "$RH_DEPLOY_DIR" commit -m "Publish RH Games from ${GITHUB_SHA}"
+          git -C "$RH_DEPLOY_DIR" push \
+            --force-with-lease="refs/heads/deploy:${rh_previous_sha}" \
+            "$rh_deploy_remote" HEAD:refs/heads/deploy
   deploy:
     needs: build
     runs-on: ubuntu-24.04
