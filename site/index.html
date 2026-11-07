@@ -2,24 +2,23 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#183d32">
-<meta name="description" content="Ловец чудес и Храни короля — две атмосферные игры. Играй прямо в браузере на телефоне или компьютере.">
-<title>RH Games — выбери свою историю</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="RH Games">
+<title>RH Games</title>
 <link rel="icon" href="assets/favicon.png">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/site.css?v=__ASSET_VERSION__">
 </head>
 <body>
-<header class="header"><a class="wordmark" href="./" aria-label="RH Games, главная"><span class="monogram">RH</span> GAMES</a><a class="header-link" href="#games">Выбрать игру <span aria-hidden="true">↗</span></a></header>
-<main>
-<section class="intro"><p class="eyebrow"><span></span> Небольшая коллекция приключений</p><h1>Выбери свою<br><em>историю.</em></h1><p class="lead">Тихая магия, сказочные миры и ещё одна попытка.<br> Две игры, в которые можно погрузиться прямо сейчас.</p><div class="intro-note"><span aria-hidden="true">✦</span> В браузере · На телефоне и компьютере</div><span class="folio" aria-hidden="true">01 — 02</span></section>
-<section id="games" class="games" aria-label="Наши игры">
-<article class="card"><a class="art-link" href="lovec-suiko/" aria-label="Играть в Ловца чудес"><img src="lovec-suiko/poster.png" alt="Рисованный мир Ловца чудес" fetchpriority="high"><span class="number">01</span><span class="art-label">Огни Каравана</span></a><div class="card-body"><div class="meta"><span>Физическая головоломка</span><span data-version="lovec-suiko">v__LOVEC_SUIKO_VERSION__</span></div><h2>Ловец чудес</h2><p>Соединяй Чудеса, открывай новые формы<br class="desktop"> и собирай свою коллекцию.</p><a class="play" href="lovec-suiko/">Играть <span aria-hidden="true">↗</span></a></div></article>
-<article class="card"><a class="art-link" href="hk-in-a-row/" aria-label="Играть в Храни короля"><img src="hk-in-a-row/poster.png" alt="Иллюстрация к игре Храни короля"><span class="number">02</span><span class="art-label">Тайны Завесы</span></a><div class="card-body"><div class="meta"><span>Сказочная игра «три в ряд»</span><span data-version="hk-in-a-row">v__HK_IN_A_ROW_VERSION__</span></div><h2>Храни короля</h2><p>Собирай сочетания, проходи испытания<br class="desktop"> и открывай страницы истории.</p><a class="play" href="hk-in-a-row/">Играть <span aria-hidden="true">↗</span></a></div></article>
-</section>
-<section class="afterword"><span aria-hidden="true">✧</span><p>Никаких установок. Просто выбери игру.<br><small>Прогресс сохраняется в этом браузере.</small></p></section>
+<header class="header"><h1>RH GAMES</h1><a href="https://t.me/rh_games_releases" target="_blank" rel="noopener noreferrer">Telegram ↗</a></header>
+<main class="games" aria-label="Игры">
+<article class="card"><a class="art-link" href="lovec-suiko/" aria-label="Играть в Ловца чудес"><img src="lovec-suiko/poster.png" alt="Ловец чудес" fetchpriority="high"></a><div class="card-body"><div class="title"><h2>Ловец чудес</h2><span data-version="lovec-suiko">v__LOVEC_SUIKO_VERSION__</span></div><a class="play" href="lovec-suiko/">Играть <span aria-hidden="true">↗</span></a></div></article>
+<article class="card"><a class="art-link" href="hk-in-a-row/" aria-label="Играть в Храни короля"><img src="hk-in-a-row/poster.png" alt="Храни короля"></a><div class="card-body"><div class="title"><h2>Храни короля</h2><span data-version="hk-in-a-row">v__HK_IN_A_ROW_VERSION__</span></div><a class="play" href="hk-in-a-row/">Играть <span aria-hidden="true">↗</span></a></div></article>
 </main>
-<footer><a class="wordmark" href="./">RH GAMES</a><p>Миры, в которые хочется возвращаться.</p><a href="https://t.me/rh_games_releases" target="_blank" rel="noopener noreferrer">Новости и версии ↗</a></footer>
 <script>
 fetch('versions.json', {cache:'no-store'}).then(response => {
   if (!response.ok) throw new Error('Cannot check current releases');
@@ -28,7 +27,7 @@ fetch('versions.json', {cache:'no-store'}).then(response => {
   for (const slug of ['lovec-suiko','hk-in-a-row']) {
     const release = catalog.games[slug];
     if (!/^[a-f0-9]{40}$/.test(release.commit) || !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(release.version)) throw new Error('Invalid release');
-    for (const link of document.querySelectorAll('a[href^="'+slug+'/"]')) link.href = slug+'/?v='+release.commit;
+    for (const link of document.querySelectorAll('a[href^="'+slug+'/"]')) link.href = slug+'/?v='+release.commit+'&ui=__ASSET_VERSION__';
     document.querySelector('[data-version="'+slug+'"]').textContent = 'v'+release.version;
   }
 }).catch(error => { console.warn(error); });
