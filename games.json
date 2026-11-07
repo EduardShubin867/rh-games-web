@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "games": {
+    "lovec-suiko": {
+      "repository": "EduardShubin867/lovec-suiko",
+      "version": "1.0.1",
+      "commit": "a22ec4be03f6a10d0700c1685b35600a17b89687"
+    },
+    "hk-in-a-row": {
+      "repository": "EduardShubin867/hk-in-a-row",
+      "version": "1.1.0",
+      "commit": "5dca5f25f975a92f64e16c3b1385274378645578"
+    }
+  }
+}

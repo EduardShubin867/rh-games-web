@@ -1,0 +1,64 @@
+name: Build and publish both Web games
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    permissions:
+      contents: read
+      pages: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.13'
+      - run: python -m unittest discover -s tools/tests -v
+      - name: Read and validate pinned releases
+        id: refs
+        run: python tools/build_site.py --refs >> "$GITHUB_OUTPUT"
+      - name: Checkout Lovec Suiko source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: EduardShubin867/lovec-suiko
+          ref: ${{ steps.refs.outputs.lovec_suiko }}
+          ssh-key: ${{ secrets.LOVEC_SOURCE_KEY }}
+          persist-credentials: false
+          path: sources/lovec-suiko
+      - name: Checkout Khrani Korolya source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: EduardShubin867/hk-in-a-row
+          ref: ${{ steps.refs.outputs.hk_in_a_row }}
+          ssh-key: ${{ secrets.HK_SOURCE_KEY }}
+          persist-credentials: false
+          path: sources/hk-in-a-row
+      - run: python sources/lovec-suiko/tools/bootstrap_godot.py --templates
+      - name: Build and verify complete static site
+        run: python tools/build_site.py
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish verified site
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

@@ -1,0 +1,10 @@
+dist/
+sources/
+.playwright-cli/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+*.key
+*.pem
+dist.staging/
