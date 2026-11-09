@@ -12,6 +12,7 @@ import subprocess
 import sys
 
 from catalog import read_catalog, verify_game
+from portal import render_portal
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -33,6 +34,8 @@ def apply_site_shell(folder, slug, expected, manifest, revision):
         "__ENGINE__": prefix,
         "__ASSET_VERSION__": revision,
         "__CONFIG__": json.dumps(config, ensure_ascii=False).replace("<", "\\u003c"),
+        "__SLUG__": slug,
+        "__COMMIT__": expected["commit"],
     }
     for token, value in values.items():
         page = page.replace(token, value)
@@ -62,9 +65,9 @@ def main():
         shutil.rmtree(staging)
     shutil.copytree(ROOT / "site", staging)
     # Refresh common UI assets on every UI change, including on cached mobile browsers.
-    assets = sorted((ROOT / "site/assets").glob("*.css")) + sorted((ROOT / "site/assets").glob("*.js"))
-    revision = hashlib.sha256(b"".join(path.read_bytes() for path in assets) +
-                              (ROOT / "templates/game.html").read_bytes()).hexdigest()[:16]
+    assets = sorted(path for path in (ROOT / "site").rglob("*") if path.is_file())
+    assets += sorted((ROOT / "templates").glob("*.html")) + [ROOT / "catalog-content.json"]
+    revision = hashlib.sha256(b"".join(path.read_bytes() for path in assets)).hexdigest()[:16]
     engine = os.environ.get("GODOT_BIN")
     if not args.from_existing and not engine:
         binary_root = args.sources / "lovec-suiko/tools/bin"
@@ -84,15 +87,14 @@ def main():
         manifest = verify_game(folder, slug, entry)
         shutil.copytree(folder, staging / slug)
         apply_site_shell(staging / slug, slug, entry, manifest, revision)
-    page = (staging / "index.html").read_text()
-    page = page.replace("__ASSET_VERSION__", revision)
+    render_portal(staging, catalog, revision)
     for slug, entry in catalog["games"].items():
-        page = page.replace("__" + slug.upper().replace("-", "_") + "_VERSION__", entry["version"])
-        page = page.replace(f'href="{slug}/"', f'href="{slug}/?v={entry["commit"]}&amp;ui={revision}"')
-        page = page.replace(f'src="{slug}/poster.png"', f'src="{slug}/poster.png?v={entry["commit"]}"')
-    if "__VERSION__" in page:
-        raise ValueError("Unresolved site version")
-    (staging / "index.html").write_text(page, encoding="utf-8")
+        folder = staging / slug
+        manifest = json.loads((folder / "manifest.json").read_text())
+        details = (folder / "about.html").read_bytes()
+        manifest["files"]["about.html"] = {"bytes": len(details), "sha256": hashlib.sha256(details).hexdigest()}
+        (folder / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        verify_game(folder, slug, entry)
     (staging / "versions.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n")
     (staging / ".nojekyll").touch()
     if destination.exists():

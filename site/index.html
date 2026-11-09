@@ -1,36 +1,24 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-root="./">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#183d32">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="RH Games">
-<title>RH Games</title>
-<link rel="icon" href="assets/favicon.png">
-<link rel="apple-touch-icon" href="assets/favicon.png">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="assets/site.css?v=__ASSET_VERSION__">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1e4d3a"><meta name="description" content="Ловец чудес и Храни короля — игры по мирам Риты Хоффман. Играйте в браузере или скачивайте игру для своего устройства.">
+<title>RH Games — миры Риты Хоффман</title>
+<link rel="icon" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/favicon.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="assets/site.css?v=__ASSET_VERSION__">
 </head>
 <body>
-<header class="header"><h1>RH GAMES</h1><a href="https://t.me/rh_games_releases" target="_blank" rel="noopener noreferrer">Telegram ↗</a></header>
-<main class="games" aria-label="Игры">
-<article class="card"><a class="art-link" href="lovec-suiko/" aria-label="Играть в Ловца чудес"><img src="lovec-suiko/poster.png" alt="Ловец чудес" fetchpriority="high"></a><div class="card-body"><div class="title"><h2>Ловец чудес</h2><span data-version="lovec-suiko">v__LOVEC_SUIKO_VERSION__</span></div><a class="play" href="lovec-suiko/">Играть <span aria-hidden="true">↗</span></a></div></article>
-<article class="card"><a class="art-link" href="hk-in-a-row/" aria-label="Играть в Храни короля"><img src="hk-in-a-row/poster.png" alt="Храни короля"></a><div class="card-body"><div class="title"><h2>Храни короля</h2><span data-version="hk-in-a-row">v__HK_IN_A_ROW_VERSION__</span></div><a class="play" href="hk-in-a-row/">Играть <span aria-hidden="true">↗</span></a></div></article>
-</main>
-<script>
-fetch('versions.json', {cache:'no-store'}).then(response => {
-  if (!response.ok) throw new Error('Cannot check current releases');
-  return response.json();
-}).then(catalog => {
-  for (const slug of ['lovec-suiko','hk-in-a-row']) {
-    const release = catalog.games[slug];
-    if (!/^[a-f0-9]{40}$/.test(release.commit) || !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(release.version)) throw new Error('Invalid release');
-    for (const link of document.querySelectorAll('a[href^="'+slug+'/"]')) link.href = slug+'/?v='+release.commit+'&ui=__ASSET_VERSION__';
-    document.querySelector('[data-version="'+slug+'"]').textContent = 'v'+release.version;
-  }
-}).catch(error => { console.warn(error); });
-</script>
-</body>
-</html>
+<a class="skip" href="#main">К содержимому</a>
+<header class="site-header"><nav class="container nav" aria-label="Основная навигация"><a class="brand" href="./" aria-label="RH Games — главная"><span class="brand-mark"><img src="assets/icons/brand.svg" alt=""></span>RH GAMES</a><div class="nav-links"><a href="#games">Игры</a><a href="#install">Установка</a></div></nav></header>
+<main id="main">
+<section class="hero container"><p class="eyebrow">ИГРОВОЙ ПОРТАЛ РИТЫ ХОФФМАН</p><h1>Маленькие миры,<br class="desktop-break"> в которые хочется возвращаться</h1><p class="hero-description">Соединяйте Чудеса на сцене Каравана или открывайте страницы книги странствий. Играйте в браузере — без регистрации и рекламы.</p><a class="button" href="#games"><img src="assets/icons/browse.svg" alt="">Смотреть игры</a></section>
+<section class="featured container" aria-labelledby="featured-title">
+<img class="featured-art" src="assets/games/lovec-cover.jpg" alt="Пикси, эллиллон и кицунэ в сияющих пузырях на сцене Каравана" fetchpriority="high" width="1024" height="576">
+<div class="featured-content"><span class="featured-tag">ОГНИ КАРАВАНА</span><h2 id="featured-title">Ловец чудес</h2><p>Один точный бросок — и сцена оживает цепочкой слияний. Какое Чудо появится следующим?</p><div class="button-row"><a class="button button-white" href="lovec-suiko/" data-play="lovec-suiko"><img src="assets/icons/play-dark.svg" alt="">Играть в браузере</a><a class="button button-glass" data-download="lovec-suiko:android" aria-disabled="true" tabindex="-1"><img src="assets/icons/download-light.svg" alt=""><span>Скачать APK</span></a></div><a class="featured-more" href="lovec-suiko/about.html">Об игре и скриншоты <span aria-hidden="true">→</span></a></div>
+</section>
+<section id="games" class="catalog container" aria-labelledby="games-title"><div class="section-heading"><div><p class="eyebrow">КАТАЛОГ</p><h2 id="games-title">Все игры</h2></div><p class="meta">Две игры по мирам Риты Хоффман</p></div><div class="games-grid">__GAME_CARDS__</div></section>
+<section id="install" class="container install-wrap" aria-labelledby="install-title"><div class="install-panel"><p class="eyebrow">ИГРА НА ВАШЕМ УСТРОЙСТВЕ</p><h2 id="install-title">Как установить на Android</h2><p class="install-intro">В браузере можно играть сразу. APK — отдельное приложение для Android, которое работает и без интернета.</p>
+<ol class="install-steps"><li><span class="step-number" aria-hidden="true">01</span><h3>Скачайте APK</h3><p>Выберите игру и нажмите «Скачать APK». Дождитесь загрузки файла.</p></li><li><span class="step-number" aria-hidden="true">02</span><h3>Разрешите установку</h3><p>Если Android запросит разрешение, разрешите установку из выбранного браузера.</p></li><li><span class="step-number" aria-hidden="true">03</span><h3>Откройте файл</h3><p>Найдите APK в загрузках и подтвердите установку. Для обновления не удаляйте прежнюю игру.</p></li></ol>
+<p class="install-note">Windows: скачайте ZIP со страницы игры, распакуйте его и запустите EXE. Сохранения Android, Windows и браузера независимы.</p></div></section>
+</main>__FOOTER__
+<script src="assets/catalog.js?v=__ASSET_VERSION__" defer></script>
+</body></html>

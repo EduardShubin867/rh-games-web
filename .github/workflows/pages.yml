@@ -3,6 +3,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      verify_cycle:
+        description: 'Проверить сборку без публикации портала'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -43,6 +48,8 @@ jobs:
           persist-credentials: false
           path: sources/hk-in-a-row
       - run: python sources/lovec-suiko/tools/bootstrap_godot.py --templates
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Build and verify complete static site
         run: python tools/build_site.py
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
@@ -50,6 +57,7 @@ jobs:
         with:
           path: dist
       - name: Publish ready-to-host deploy branch
+        if: ${{ github.ref == 'refs/heads/main' && !inputs.verify_cycle }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -102,6 +110,7 @@ jobs:
             --force-with-lease="refs/heads/deploy:${rh_previous_sha}" \
             "$rh_deploy_remote" HEAD:refs/heads/deploy
   deploy:
+    if: ${{ github.ref == 'refs/heads/main' && !inputs.verify_cycle }}
     needs: build
     runs-on: ubuntu-24.04
     permissions:

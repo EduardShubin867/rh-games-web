@@ -3,15 +3,15 @@
   "games": {
     "lovec-suiko": {
       "repository": "EduardShubin867/lovec-suiko",
-      "version": "1.0.2",
-      "commit": "3db26a5bceb8fad1bd742da9f63eeacd64eab5c1",
-      "archive_sha256": "9079ef69a863481144713d0ae098c6527a473207764879936e92b75424d81e43"
+      "version": "1.0.3",
+      "commit": "b23906afef1f32fadd5965798dff9485710ebccd",
+      "archive_sha256": "f57114fe47ee1178bf833b61532655bb52652bfae0030be5c8aa3019027a92bb"
     },
     "hk-in-a-row": {
       "repository": "EduardShubin867/hk-in-a-row",
-      "version": "1.2.0",
-      "commit": "01c7ec94bc29c3de53682cae6e1dc6ad4de50d11",
-      "archive_sha256": "a585f8db017c9ffafb3935c61c6cdf59a923a7595d1adfec8d5e127b8a57885d"
+      "version": "1.2.1",
+      "commit": "b275ad1edc1e018536d8808db6258e17d07790ca",
+      "archive_sha256": "e33611facf697d4e2f3671970587f9bba0aa00afd996c2f67f2fb0994c0bea76"
     }
   }
 }

@@ -16,6 +16,7 @@
 <body>
 <main id="player">
 <header id="toolbar"><a href="../">← Все игры</a><span>v__VERSION__</span><button id="fullscreen" type="button">На весь экран</button></header>
+<aside id="update-banner" hidden aria-live="polite"><span id="update-text"></span><button id="show-update" type="button">Обновить</button><button id="defer-update" type="button">Позже</button></aside>
 <div id="stage">
 <canvas id="canvas" tabindex="0" aria-label="__TITLE__">Для игры нужен браузер с поддержкой Canvas.</canvas>
 <section id="cover"><div class="panel"><h1>__TITLE__</h1><button id="start" type="button" disabled>Загрузка…</button><progress id="progress" aria-label="Загрузка игры"></progress><p id="notice" role="status" aria-live="polite">Загружаем игру…</p><a class="licenses" href="licenses/">Лицензии</a></div></section>
@@ -23,9 +24,12 @@
 <button id="collapse" type="button" hidden aria-label="Выйти из развёрнутого режима">Свернуть</button>
 <dialog id="fullscreen-help" aria-labelledby="fullscreen-title"><h2 id="fullscreen-title">Полный экран на iPhone</h2><p>Чтобы убрать панели браузера, откройте меню «Поделиться» → «На экран „Домой“». Затем запустите RH Games с экрана «Домой».</p><div class="actions"><button id="expand" type="button">Развернуть здесь</button><button id="close-help" type="button">Закрыть</button></div></dialog>
 </main>
+<dialog id="update-confirm" aria-labelledby="update-title"><h2 id="update-title">Перезагрузить игру?</h2><p>Перед обновлением вернитесь в меню игры, чтобы сохранить партию. Сохранённый прогресс останется в этом браузере.</p><div class="actions"><button id="cancel-update" type="button">Вернуться к игре</button><button id="apply-update" type="button">Перезагрузить</button></div></dialog>
 <noscript>Включите JavaScript, чтобы запустить игру.</noscript>
+<script id="release-config" type="application/json">{"game":"__SLUG__","commit":"__COMMIT__","version":"__VERSION__"}</script>
 <script id="game-config" type="application/json">__CONFIG__</script>
 <script src="__ENGINE__.js"></script>
 <script src="../assets/game.js?v=__ASSET_VERSION__"></script>
+<script src="../assets/web-updates.js?v=__ASSET_VERSION__"></script>
 </body>
 </html>
