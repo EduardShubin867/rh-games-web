@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "game": "lovec-suiko",
+  "title": "Ловец чудес: Огни Каравана",
+  "version": "1.0.3",
+  "source_commit": "b23906afef1f32fadd5965798dff9485710ebccd",
+  "godot": "4.7.2.stable.official.ed1daf0bf",
+  "threads": false,
+  "engine_file_prefix": "game-lovec-suiko-1.0.3-b23906afef1f",
+  "files": {
+    "game-lovec-suiko-1.0.3-b23906afef1f.apple-touch-icon.png": {
+      "bytes": 50213,
+      "sha256": "e9953a232a14d050c443129278d5cfac48a6e6b982b974af7f81cfe100c8b549"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.audio.position.worklet.js": {
+      "bytes": 2973,
+      "sha256": "be33985bc7160d6bf9646f259cd86b259cd67b02ccb297ee5c44f8ac84327bc8"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.audio.worklet.js": {
+      "bytes": 7298,
+      "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.html": {
+      "bytes": 3771,
+      "sha256": "34c51f9b9eba03282dda919b051d5441b24ef4bc11407e5dda97941adcd9f56f"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.icon.png": {
+      "bytes": 321696,
+      "sha256": "a1b2784069c587da201b8cb103b5365ab2878956fdfbf0e821a2ebaa1537c44d"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.js": {
+      "bytes": 279815,
+      "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.pck": {
+      "bytes": 40311916,
+      "sha256": "5030b41e1a6544a07b46e18471b187f196a23ad62d9b04f50807e24e413cbe9b"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.png": {
+      "bytes": 215367,
+      "sha256": "8fad74b788508835d77a7c017b7b242e9dca553aae3e380b58f482b917302dcf"
+    },
+    "game-lovec-suiko-1.0.3-b23906afef1f.wasm": {
+      "bytes": 39514754,
+      "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
+    },
+    "index.html": {
+      "bytes": 3771,
+      "sha256": "34c51f9b9eba03282dda919b051d5441b24ef4bc11407e5dda97941adcd9f56f"
+    },
+    "licenses/Gabriela-OFL.txt": {
+      "bytes": 4515,
+      "sha256": "c5478a76bd760eed7b741678b71d9dfe1062e7399739a3b6da8ebe00d19715d1"
+    },
+    "licenses/Godot-COPYRIGHT.txt": {
+      "bytes": 100108,
+      "sha256": "cb1980c88089573bcacd7221d777c689bb8bbd778799f24c27fca0fe5f774d6d"
+    },
+    "licenses/Godot-MIT.txt": {
+      "bytes": 1149,
+      "sha256": "b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80"
+    },
+    "licenses/Literata-OFL.txt": {
+      "bytes": 4389,
+      "sha256": "8742963604cd89dc81437811a850018fc03b2bfad686d7422c8235967c87614e"
+    },
+    "licenses/Lora-OFL.txt": {
+      "bytes": 4423,
+      "sha256": "1d9a970809ac804b582a6ce7f0ebc4e7fefcbfd7ff6299cad35ee656a21be716"
+    },
+    "licenses/NotoSans-OFL.txt": {
+      "bytes": 4396,
+      "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    "licenses/PTSerif-OFL.txt": {
+      "bytes": 4431,
+      "sha256": "1037c6ad244bddf78bb822ec4b74354015ddae6db0a6c4e35d942e6ecfa5f5e3"
+    },
+    "licenses/index.html": {
+      "bytes": 536,
+      "sha256": "2e756375380709877331a31775e0796d6b8f0c1c0bc7e8e48132024c01df0610"
+    },
+    "poster.png": {
+      "bytes": 1217653,
+      "sha256": "1adf798235781e671f994929701c774af05b3cc75f4e3e97a4ca3b6ed20b942c"
+    },
+    "about.html": {
+      "bytes": 8025,
+      "sha256": "975cc2495da6d3adc46ac92d701b84488580a904f3321b54ded3627e7b136e23"
+    }
+  },
+  "site_shell_revision": "2d3f967ecbe2e12a"
+}

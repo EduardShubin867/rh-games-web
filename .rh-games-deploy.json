@@ -1,0 +1,18 @@
+{
+  "publisher": "rh-games-web",
+  "source_commit": "29d006db4afcd7cf86243db75a5ee8a8b026dd5f",
+  "games": {
+    "lovec-suiko": {
+      "repository": "EduardShubin867/lovec-suiko",
+      "version": "1.0.3",
+      "commit": "b23906afef1f32fadd5965798dff9485710ebccd",
+      "archive_sha256": "f57114fe47ee1178bf833b61532655bb52652bfae0030be5c8aa3019027a92bb"
+    },
+    "hk-in-a-row": {
+      "repository": "EduardShubin867/hk-in-a-row",
+      "version": "1.3.1",
+      "commit": "0e272b2fa80519619a9fbb3d27a232afe19806a1",
+      "archive_sha256": "dd528b4dc77dca5c0bb10f85a92f2174ee2e3fc651514c83d66731756250fc5b"
+    }
+  }
+}

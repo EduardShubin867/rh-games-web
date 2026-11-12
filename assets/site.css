@@ -1,0 +1,137 @@
+@font-face{font-family:Manrope;src:url(fonts/Manrope.ttf) format("truetype");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Playfair Display";src:url(fonts/PlayfairDisplay.ttf) format("truetype");font-weight:400 900;font-display:swap}
+:root{--page:#f7f3e9;--card:#fff;--ink:#21322b;--muted:#5e6b61;--green:#1e4d3a;--deep:#153a2b;--border:#e4dcc9;--gold:#c69a4b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.6 Manrope,system-ui,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+a,button{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:3px solid #9a722e;outline-offset:5px}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+.container{width:min(1200px,calc(100% - 80px));margin-inline:auto}
+.site-header{border-bottom:1px solid var(--border)}
+.nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:12px;font-size:15px;letter-spacing:1.5px;font-weight:800;white-space:nowrap}
+.brand-mark{display:grid;place-items:center;background:var(--green);width:32px;height:32px;border-radius:10px}
+.nav-links{display:flex;gap:36px;font-weight:600}
+.nav a:not(.brand):hover,.footer-links a:hover{text-decoration:underline;text-underline-offset:5px}
+.skip{position:fixed;top:12px;left:20px;transform:translateY(-200%);z-index:10;background:var(--green);color:white;padding:12px 20px;border-radius:8px}
+.skip:focus{transform:none}
+.hero{padding-block:96px 64px}
+.eyebrow{font-size:13px;line-height:24px;letter-spacing:1.5px;font-weight:800;color:#9b702b;margin:0 0 28px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;font-weight:600;letter-spacing:-.025em;margin:0;line-height:1.2}
+.hero h1{max-width:860px;font-size:60px;line-height:1.15}
+.desktop-break{display:none}
+.hero-description{font-size:17px;line-height:1.6;color:var(--muted);max-width:620px;margin:28px 0}
+.button{min-height:52px;padding:13px 24px;display:inline-flex;justify-content:center;align-items:center;gap:10px;background:var(--green);border:1.5px solid var(--green);border-radius:14px;font-size:15px;font-weight:700;color:white;text-align:center;line-height:24px;cursor:pointer;transition:background .15s,box-shadow .15s}
+.hero>.button{min-height:56px;border-radius:16px;padding-inline:28px}
+.button img{flex-shrink:0}
+.button:hover{background:#2b624b;border-color:#2b624b;box-shadow:0 4px 14px #153a2b1a}
+.button-outline{color:var(--green);background:transparent}
+.button-outline:hover{color:var(--green);background:#e9ecdf;border-color:var(--green)}
+.button-white{background:white;border-color:white;color:var(--green)}
+.button-white:hover{background:#f0eadc;border-color:#f0eadc}
+.button-glass{background:transparent;border-color:#ffffff99;color:white}
+.button-glass:hover{background:#ffffff18;border-color:white}
+[aria-disabled=true]{cursor:default;opacity:.55;pointer-events:none}
+.button-row{display:flex;gap:12px;flex-wrap:wrap}
+.featured{position:relative;min-height:520px;border-radius:28px;overflow:hidden;color:white;isolation:isolate}
+.featured-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.featured:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0e241bed 0%,#0e241b99 46%,#0e241b08 100%);z-index:-1}
+.featured-content{padding:64px 56px;max-width:640px;min-height:520px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px}
+.featured-tag{padding:2px 14px;border:1px solid var(--gold);border-radius:999px;font-size:12px;letter-spacing:1.5px;font-weight:800;color:#e7c381}
+.featured h2{font-size:52px}
+.featured-content>p{max-width:460px;color:#e6ede8;font-size:16px;margin:0}
+.featured-more{font-size:13px;color:#e6ede8;text-decoration:underline;text-underline-offset:5px}
+.featured-more span{margin-left:8px}
+.catalog{padding-block:96px}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:40px}
+.section-heading .eyebrow{margin:0 0 12px}
+h2{font-size:40px}
+.meta{font-size:13px;color:var(--muted)}
+.section-heading>.meta{margin:0}
+.games-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.card{background:white;border:1px solid var(--border);border-radius:24px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.art-link{display:block;overflow:hidden;background:var(--deep)}
+.art-link img{width:100%;height:320px;object-fit:cover;transition:transform .3s}
+.art-link:hover img{transform:scale(1.025)}
+.card-body{padding:24px 28px 28px;display:flex;flex:1;flex-direction:column;gap:16px}
+.card-title{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card h3{font:600 30px/1.25 "Playfair Display",Georgia,serif;letter-spacing:-.025em;margin:0}
+.card h3 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.chip{display:inline-flex;align-items:center;white-space:nowrap;border-radius:999px;background:#f1ecdd;color:var(--muted);font-size:12px;font-weight:700;padding:5px 12px}
+.chip-outline{background:transparent;border:1px solid var(--border)}
+.card-description{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
+.card-body>.meta{margin:0}
+.card .button-row{margin-top:auto}
+.card .button-row>.button{flex:1;padding-inline:14px;white-space:nowrap}
+.card .details-link{font-size:13px;color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.install-wrap{padding-bottom:104px}
+.install-panel{padding:56px 64px;border-radius:28px;background:var(--deep);color:white}
+.install-panel .eyebrow{color:var(--gold);margin:0 0 14px}
+.install-intro{color:#b9c9bf;max-width:580px;margin:14px 0 0}
+.install-steps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.step-number{font:600 40px/1.2 "Playfair Display",Georgia,serif;color:var(--gold)}
+.install-steps h3{font-size:17px;margin:12px 0}
+.install-steps p{font-size:14px;line-height:1.6;color:#b9c9bf;margin:0}
+.install-note{font-size:13px;color:#b9c9bf;border-top:1px solid #b9c9bf35;margin:32px 0 0;padding-top:24px;max-width:850px}
+.site-footer{border-top:1px solid var(--border)}
+.footer-inner{padding-block:48px 56px}
+.footer-top,.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.footer-top{padding-bottom:28px;border-bottom:1px solid var(--border)}
+.footer-top .brand{font-size:13px}
+.footer-top .brand-mark{width:28px;height:28px;border-radius:8px}
+.footer-links{display:flex;gap:32px;color:var(--green);font-size:14px;font-weight:600}
+.footer-bottom{padding-top:28px;font-size:13px;color:var(--muted)}
+.footer-bottom p{margin:0}
+.back-link{display:inline-flex;align-items:center;gap:10px;color:var(--green);font-weight:700}
+.detail{padding-block:72px 96px;display:flex;flex-direction:column;gap:64px}
+.game-header{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:72px;align-items:center}
+.game-intro{min-width:0}
+.chips{display:flex;gap:10px;margin-bottom:24px}
+.game-header h1{font-size:64px}
+.game-subtitle{font:500 22px/1.4 "Playfair Display",Georgia,serif;color:var(--muted);margin:8px 0 20px}
+.game-description{max-width:560px;font-size:17px;color:var(--muted);margin:0 0 24px}
+.game-cover{width:440px;height:320px;object-fit:cover;border-radius:24px;box-shadow:0 20px 48px #1e3a2b29}
+.windows-download{display:inline-block;margin-top:16px;font-size:14px;color:var(--green);text-decoration:underline;text-underline-offset:4px}
+.download-status{margin:8px 0 0;min-height:21px}
+.game-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;background:white;border:1px solid var(--border);border-radius:20px;padding:28px 40px;margin:0}
+dt{font-size:13px;color:var(--muted);margin-bottom:8px}
+dd{font-size:15px;font-weight:700;margin:0}
+.detail h2{font-size:32px}
+.screenshots .section-heading{margin-bottom:28px}
+.shots-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.shot{padding:0;border:1px solid var(--border);background:#172c25;border-radius:20px;overflow:hidden;cursor:zoom-in;height:288px;display:block}
+.shot img{width:100%;height:100%;object-fit:contain}
+.gallery-hint{margin:12px 0 0}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:72px;align-items:start}
+.about-grid p{font-size:16px;line-height:1.75;color:var(--muted);margin:20px 0 0}
+.features{background:var(--deep);border-radius:24px;padding:32px;color:white}
+.features h3{font:600 24px/1.3 "Playfair Display",Georgia,serif;margin:0 0 24px}
+.features ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px;font-size:14px;color:#e6ede8}
+.features li{display:flex;align-items:center;gap:12px}
+.other-game>h2{margin-bottom:28px}
+.other-game .card{display:grid;grid-template-columns:360px minmax(0,1fr)}
+.other-game .art-link{position:relative;min-height:280px}
+.other-game .art-link img{position:absolute;inset:0;width:100%;height:100%;min-height:0}
+.other-game .card-body{padding:32px 40px}
+.other-game .button-row{justify-content:flex-start}
+.other-game .button{flex:initial}
+.gallery-dialog{padding:50px 16px 16px;border:1px solid var(--border);border-radius:16px;background:var(--page);max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}
+.gallery-dialog::backdrop{background:#08170edf}
+.gallery-dialog>img{max-height:calc(100dvh - 116px);max-width:calc(100vw - 68px);width:auto;height:auto;margin:auto}
+.gallery-close{position:absolute;right:16px;top:8px;min-height:36px;background:transparent;color:var(--green);border:0;cursor:pointer;font-weight:700}
+@media(max-width:1100px){
+.card .button-row{flex-direction:column}.game-header{grid-template-columns:minmax(0,1fr) 36%;gap:40px}.game-cover{width:100%}.game-header h1{font-size:48px}.about-grid{gap:40px;grid-template-columns:minmax(0,1fr) 32%}.other-game .card{grid-template-columns:32% minmax(0,1fr)}.card h3{font-size:27px}.install-panel{padding:48px 40px}.install-steps{gap:28px}
+}
+@media(max-width:700px){
+.container{width:calc(100% - 40px)}.nav{height:64px;gap:16px}.brand{font-size:13px;gap:10px}.brand-mark{height:28px;width:28px;border-radius:8px}.nav-links{gap:20px;font-size:12px}.hero{padding-block:40px}.hero .eyebrow{font-size:11px;margin-bottom:20px;letter-spacing:1.2px}.hero h1{font-size:36px;line-height:1.2}.hero-description{font-size:15px;margin:20px 0}.hero>.button{width:100%;min-height:52px;border-radius:14px}
+.featured{min-height:420px;border-radius:20px}.featured-content{padding:180px 20px 20px;min-height:420px;justify-content:flex-end;gap:12px}.featured:after{background:linear-gradient(0deg,#0e241bf5 0%,#0e241b99 62%,#0e241b00 100%)}.featured-art{object-position:60% center}.featured h2{font-size:30px}.featured-tag{font-size:10px}.featured-content>p{display:none}.featured .button-row{width:100%;flex-direction:column;gap:10px}.featured .button{min-height:48px;font-size:14px;border-radius:12px;padding-block:10px}.featured-more{font-size:12px}
+.catalog{padding-block:48px}.section-heading{gap:16px;margin-bottom:24px}.section-heading .eyebrow{display:none}h2{font-size:28px}.catalog .section-heading>.meta{max-width:125px;text-align:right;font-size:11px}.games-grid{grid-template-columns:1fr;gap:24px}.card{border-radius:20px}.art-link img{height:190px}.card-body{padding:20px;gap:12px}.card h3{font-size:24px}.card-description{font-size:14px}.chip{font-size:11px;padding:4px 10px}.card .button-row{gap:10px}.card .button{min-height:48px;font-size:14px;border-radius:12px;padding-block:10px}.meta{font-size:12px}
+.install-wrap{padding-bottom:56px}.install-panel{padding:32px 24px;border-radius:20px}.install-panel .eyebrow{font-size:10px;letter-spacing:1px}.install-panel h2{font-size:26px}.install-intro{font-size:13px}.install-steps{grid-template-columns:1fr;gap:24px;margin-top:28px}.install-note{font-size:12px}
+.footer-inner{padding-block:32px 40px}.footer-top,.footer-bottom{align-items:flex-start;flex-direction:column;gap:20px}.footer-links{font-size:13px;gap:24px}.footer-bottom{font-size:12px}
+.detail{padding-block:40px 56px;gap:40px}.game-header{display:flex;flex-direction:column;align-items:stretch;gap:28px}.game-header h1{font-size:40px}.game-subtitle{font-size:20px}.game-description{font-size:15px}.game-header .button-row{flex-direction:column}.game-cover{width:100%;height:230px;border-radius:20px}.game-meta{grid-template-columns:repeat(2,minmax(0,1fr));padding:24px;gap:24px 16px}.detail h2{font-size:28px}.screenshots .section-heading{align-items:flex-start;flex-direction:column;gap:8px}.shots-row{gap:12px;overflow-x:auto;grid-template-columns:repeat(3,75%);padding-bottom:8px;scroll-snap-type:x mandatory}.shot{height:300px;scroll-snap-align:start}.about-grid{grid-template-columns:1fr;gap:28px}.about-grid p{font-size:15px}.features{padding:28px}.other-game .card{display:flex}.other-game .art-link{height:190px;min-height:190px}.other-game .card-body{padding:20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}

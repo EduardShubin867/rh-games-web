@@ -1,0 +1,12 @@
+{
+  "id": "./",
+  "name": "RH Games",
+  "short_name": "RH Games",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10221e",
+  "theme_color": "#183d32",
+  "icons": [{"src": "assets/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}]
+}

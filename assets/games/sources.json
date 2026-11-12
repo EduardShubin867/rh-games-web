@@ -1,0 +1,52 @@
+{
+  "lovec-cover.jpg": {
+    "source": "../lovec-suiko/assets/generated/branding/main_menu_art.png",
+    "kind": "game illustration",
+    "sha256": "3d3d98369446ceacefc591a3cee25253800d830215337df27d96f3330e084f64"
+  },
+  "king-cover.jpg": {
+    "source": "../hk-in-a-row/assets/generated/backgrounds/bg_royal_garden.png",
+    "kind": "game illustration",
+    "sha256": "00c16dc2547608edd48099c92d1be6063f13164a0337580da231b309a1f9da2a"
+  },
+  "lovec-play.jpg": {
+    "source": "lovec-suiko/scenes/main.tscn — native gameplay capture",
+    "kind": "rendered game screenshot",
+    "capture": {
+      "seed": 20261109,
+      "mode": "heroes",
+      "hero": "damyan",
+      "drops": 60,
+      "viewport": [
+        540,
+        960
+      ]
+    },
+    "sha256": "2b2e87f79f76294779fc113d97381a8fb32fa030187f04499e63ffe5a026a275"
+  },
+  "lovec-heroes.jpg": {
+    "source": "../lovec-suiko/reports/field_targeting_revision/polish/core/phone_hero_selection.png",
+    "kind": "rendered game screenshot",
+    "sha256": "21a8bcafb4bf8fa2fb8ac4c62deb7b8898768f583e22e4870b4999b9515f5cd1"
+  },
+  "lovec-appearance.jpg": {
+    "source": "../lovec-suiko/reports/field_targeting_revision/polish/core/phone_appearance.png",
+    "kind": "rendered game screenshot",
+    "sha256": "5f352d97f692328b7c8cde21a737123a387ff6545b1ace543a02a707c912b3fa"
+  },
+  "king-play.jpg": {
+    "source": "../hk-in-a-row/docs/screenshots/ui_polish/after/game_390x844.png",
+    "kind": "rendered game screenshot",
+    "sha256": "312763070f8ade17aaf16fcb57313974477bae67cc7528aae105ddcb7c9ed4b2"
+  },
+  "king-map.jpg": {
+    "source": "../hk-in-a-row/docs/screenshots/ui_polish/after/map_390x844.png",
+    "kind": "rendered game screenshot",
+    "sha256": "6c6decf4717079693b1b9acb0691ffe2f8f15d2e1e3d927e47f39e16a3623186"
+  },
+  "king-story.jpg": {
+    "source": "../hk-in-a-row/docs/screenshots/ui_polish/after/dialogue_0_390x844.png",
+    "kind": "rendered game screenshot",
+    "sha256": "d1831865b6036ce603f376a84ae2b49fcee197ad839b9671de7b55270b30ec86"
+  }
+}
