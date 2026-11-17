@@ -47,9 +47,40 @@ jobs:
           ssh-key: ${{ secrets.HK_SOURCE_KEY }}
           persist-credentials: false
           path: sources/hk-in-a-row
-      - run: python sources/lovec-suiko/tools/bootstrap_godot.py --templates
+      - name: Install verified Godot through authenticated GitHub requests
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/rh-godot"
+          gh api repos/godotengine/godot/releases/tags/4.7.2-stable > "$RUNNER_TEMP/rh-godot/release.json"
+          gh release download 4.7.2-stable --repo godotengine/godot \
+            --pattern Godot_v4.7.2-stable_linux.x86_64.zip \
+            --pattern Godot_v4.7.2-stable_export_templates.tpz \
+            --dir "$RUNNER_TEMP/rh-godot"
+          python - <<'PY'
+          import hashlib, json, os, zipfile
+          from pathlib import Path
+          root = Path(os.environ["RUNNER_TEMP"]) / "rh-godot"
+          assets = {item["name"]: item for item in json.loads((root / "release.json").read_text())["assets"]}
+          engine_name = "Godot_v4.7.2-stable_linux.x86_64"
+          for name in (engine_name + ".zip", "Godot_v4.7.2-stable_export_templates.tpz"):
+              if assets[name].get("digest") != "sha256:" + hashlib.sha256((root / name).read_bytes()).hexdigest():
+                  raise SystemExit("Official Godot checksum mismatch: " + name)
+          engine = root / engine_name
+          with zipfile.ZipFile(root / (engine_name + ".zip")) as archive:
+              engine.write_bytes(archive.read(engine_name))
+          engine.chmod(0o755)
+          templates = Path.home() / ".local/share/godot/export_templates/4.7.2.stable"
+          templates.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(root / "Godot_v4.7.2-stable_export_templates.tpz") as archive:
+              for name in ("web_nothreads_debug.zip", "web_nothreads_release.zip"):
+                  (templates / name).write_bytes(archive.read("templates/" + name))
+          with open(os.environ["GITHUB_ENV"], "a") as output:
+              output.write("GODOT_BIN=" + str(engine) + "\n")
+          print("Verified Godot 4.7.2 and Web templates installed")
+          PY
       - name: Build and verify complete static site
         run: python tools/build_site.py
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
