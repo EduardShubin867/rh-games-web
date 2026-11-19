@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "game": "hk-in-a-row",
+  "title": "Храни короля: Тайны Завесы",
+  "version": "1.4.0",
+  "source_commit": "25fc952868fa0573868e4c0896c432e9bc2a8aa0",
+  "godot": "4.7.2.stable.official.ed1daf0bf",
+  "threads": false,
+  "engine_file_prefix": "game-hk-in-a-row-1.4.0-25fc952868fa",
+  "files": {
+    "game-hk-in-a-row-1.4.0-25fc952868fa.apple-touch-icon.png": {
+      "bytes": 58538,
+      "sha256": "af20a51feaa8da9cb207fa835fb05be6ef676ebb1b8c33dbcf095d601b93006e"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.audio.position.worklet.js": {
+      "bytes": 2973,
+      "sha256": "be33985bc7160d6bf9646f259cd86b259cd67b02ccb297ee5c44f8ac84327bc8"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.audio.worklet.js": {
+      "bytes": 7298,
+      "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.html": {
+      "bytes": 3771,
+      "sha256": "bbc6abeb198aab718ce4dab2a2584c428d2d83618fecad29ec1893e2a54d661e"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.icon.png": {
+      "bytes": 1101418,
+      "sha256": "a4dc4213d3b81bf06caeae8fa8c87aeb6a1c9c2b04a9803363c8a9061b26bf65"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.js": {
+      "bytes": 279815,
+      "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.pck": {
+      "bytes": 57055744,
+      "sha256": "10b4359d144ce20030b87b4367c4b4a687f81af66077956f636d8c5f7e9bcfec"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.png": {
+      "bytes": 65891,
+      "sha256": "658ba33f1e9bf1742c6d4443b8b75ec79685b805c9a33246289cb993b2875b04"
+    },
+    "game-hk-in-a-row-1.4.0-25fc952868fa.wasm": {
+      "bytes": 39514754,
+      "sha256": "fc74679e3b97f76878947fcd4fbe1268cbfa6188182a2e33bbc3f5dc9bfa57d0"
+    },
+    "index.html": {
+      "bytes": 3771,
+      "sha256": "bbc6abeb198aab718ce4dab2a2584c428d2d83618fecad29ec1893e2a54d661e"
+    },
+    "licenses/CormorantGaramond-OFL.txt": {
+      "bytes": 4387,
+      "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+    },
+    "licenses/Godot-MIT.txt": {
+      "bytes": 1149,
+      "sha256": "b0435e3b3e4e55238f05f4b306f30524a1b2e20147810d436eaa554fa6855c80"
+    },
+    "licenses/GolosText-OFL.txt": {
+      "bytes": 4394,
+      "sha256": "ff532f9e8789f09a9fdffc3c0954eedfb0a48be77b2e2eb90f5f82e4f347f50c"
+    },
+    "licenses/index.html": {
+      "bytes": 336,
+      "sha256": "2806ce0d47f339c14aaaa2c18bb4138f6b62f8d945d32c506d7313ef3f13aff5"
+    },
+    "poster.png": {
+      "bytes": 1871466,
+      "sha256": "30af303b121466e9b5d6c670071ef14e511804dcdebfa4817288a0218b61ba19"
+    },
+    "about.html": {
+      "bytes": 8105,
+      "sha256": "88350eb8d48c40df36b3e8080191d93b28146ee9243d5d05634ed5d13af6ccb0"
+    }
+  },
+  "site_shell_revision": "2d3f967ecbe2e12a"
+}
